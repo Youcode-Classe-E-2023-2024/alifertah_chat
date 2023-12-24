@@ -20,6 +20,7 @@
                 echo ("
                     <div class='flex'>
                         <a href='index.php?page=rooms' class='text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2'>rooms</a>
+                        <a href='index.php?page=createRoom' class='text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2'>create room</a>
                         <form method='post' action='index.php?page=login'>
                             <button class='text-lg underline text-red-500 hover:text-blue-dark ml-2' type='submit' name='logout'> 
                             Logout
