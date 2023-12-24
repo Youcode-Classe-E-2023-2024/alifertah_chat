@@ -1,4 +1,4 @@
 <?php
     if(isset($_POST['login'])){
-        echo ($_POST['email']);
+        User::getUser($_POST["email"], $_POST["password"]);
     } 

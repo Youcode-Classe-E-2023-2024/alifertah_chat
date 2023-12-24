@@ -14,11 +14,25 @@ class User
         $this->setPassword($password);
     }
 
-    static function getAll()
+    static function getUser($email, $password)
     {
         global $db;
-        $result = $db->query("SELECT * FROM users");
-        return $result->fetch_all(MYSQLI_ASSOC);
+        $stmt = $db->prepare("SELECT users_password FROM users WHERE users_email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->bind_result($hashedPasswordFromDatabase);
+        $stmt->fetch();
+        $stmt->close();
+
+        if (!$hashedPasswordFromDatabase) {
+            echo "Invalid email or password.";
+        }else {
+            if (password_verify($password, $hashedPasswordFromDatabase)) {
+                echo "Login successful!";
+            } else {
+                echo "Invalid email or password.";
+            }
+        }
     }
 
     function insertUser(){
