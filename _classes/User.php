@@ -7,17 +7,11 @@ class User
     public $username;
     private $password;
 
-    public function __construct($id)
+    public function __construct($username, $email, $password)
     {
-        global $db;
-
-        $result = $db->query("SELECT * FROM users WHERE users_id = '$id'");
-        $user = $result->fetch_assoc();
-
-        $this->id = $user['users_id'];
-        $this->email = $user['users_email'];
-        $this->username = $user['users_username'];
-        $this->password = $user['users_password'];
+        $this->username = $username;
+        $this->email = $email;
+        $this->setPassword($password);
     }
 
     static function getAll()
@@ -25,6 +19,12 @@ class User
         global $db;
         $result = $db->query("SELECT * FROM users");
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function insertUser(){
+        global $db;
+        $db->query("INSERT INTO users (users_username, users_email, users_password) VALUES 
+        ('$this->username', '$this->email', '$this->password')");
     }
 
     function edit()
