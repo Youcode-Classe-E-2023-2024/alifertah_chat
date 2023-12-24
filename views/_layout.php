@@ -10,8 +10,34 @@
     <link rel="stylesheet" href="<?= PATH ?>assets/css/style.css">
 </head>
 <body>
-    <h1><?= ucfirst($page) ?> View</h1>
-
+    <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline w-full">
+    <div class="mb-2 sm:mb-0">
+        <a href="index.php?page=home" class="text-2xl no-underline text-grey-darkest hover:text-blue-dark">Home</a>
+    </div>
+    <div>
+        <?php
+            if(isset($_SESSION["id"])){
+                echo ("
+                    <div class='flex'>
+                        <a href='index.php?page=rooms' class='text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2'>rooms</a>
+                        <form method='post' action='index.php?page=login'>
+                            <button class='text-lg underline text-red-500 hover:text-blue-dark ml-2' type='submit' name='logout'> 
+                            Logout
+                            </button>
+                        </form>
+                    </div>
+                    "
+            );
+            } else {
+                echo ("
+                    <a href='index.php?page=login' class='text-lg no-underline text-grey-darkest hover:text-blue-dark ml-2'>login</a>
+                    "
+            );
+            }
+        ?>
+    </div>
+    </nav>
+    
     <main>
         <?php include_once 'views/' . $page . '_view.php'; ?>
     </main>

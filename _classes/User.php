@@ -20,15 +20,17 @@ class User
         $stmt = $db->prepare("SELECT users_password FROM users WHERE users_email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($hashedPasswordFromDatabase);
+        $stmt->bind_result($hashedPass);
         $stmt->fetch();
         $stmt->close();
 
-        if (!$hashedPasswordFromDatabase) {
+        if (!$hashedPass) {
             echo "Invalid email or password.";
         }else {
-            if (password_verify($password, $hashedPasswordFromDatabase)) {
-                echo "Login successful!";
+            if (password_verify($password, $hashedPass)) {
+                session_start();
+                $_SESSION["id"] = 1;
+                header("Location: index.php?page=register");
             } else {
                 echo "Invalid email or password.";
             }
