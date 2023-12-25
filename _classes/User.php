@@ -30,7 +30,7 @@ class User
             if (password_verify($password, $hashedPass)) {
                 session_start();
                 $_SESSION["id"] = 1;
-                header("Location: index.php?page=register");
+                header("Location: index.php?page=rooms");
             } else {
                 echo "Invalid email or password.";
             }

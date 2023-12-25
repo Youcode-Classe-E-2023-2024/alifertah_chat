@@ -14,7 +14,7 @@
                 <tr class='bg-blue-400 w-[50%]' align='center'>
                     <td>$room[room_name]</td>
                     <td>
-                        <a href='index.php?page=room&id=$room[room_id]'>join now</a>
+                        <a href='index.php?page=room&id=$room[room_id]&name=$room[room_name]'>join now</a>
                     </td>
                 </tr>
                 ");

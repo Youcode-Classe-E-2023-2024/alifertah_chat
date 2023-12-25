@@ -1,28 +1,12 @@
-<!-- create_page.php -->
-<?php
-// Retrieve information based on the ID parameter
-$pageId = isset($_GET['id']) ? $_GET['id'] : 0;
-
-// Perform database queries or other logic to get dynamic content
-// For demonstration purposes, using a simple associative array
-$pageContent = [
-    1 => 'Content for Page 1',
-    2 => 'Content for Page 2',
-    // Add more content as needed
-];
-
-// Output HTML with dynamic content
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Page <?php echo $pageId; ?></title>
-</head>
-<body>
-    <h1>Dynamic Page <?php echo $pageId; ?></h1>
-    <p><?php echo $pageContent[$pageId]; ?></p>
-    <!-- You can customize the layout and content as needed -->
-</body>
-</html>
+<div>
+    <h1 class="text-center  text-3xl"><?= $pageName?></h1>
+    <div class="max-w-md mx-auto my-4 bg-white border rounded shadow-lg">
+        <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
+            <!-- Messages will be displayed here -->
+        </div>
+        <form id="chat-form" method="post" class="flex items-center p-4">
+            <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
+            <button type="submit" name="send" class="px-4 py-2 bg-blue-500 text-white rounded-r">Send</button>
+        </form>
+    </div>
+</div>
