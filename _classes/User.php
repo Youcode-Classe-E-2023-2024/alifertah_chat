@@ -17,25 +17,26 @@ class User
     static function getUser($email, $password)
     {
         global $db;
-        $stmt = $db->prepare("SELECT users_password FROM users WHERE users_email = ?");
+        $stmt = $db->prepare("SELECT users_id, users_password FROM users WHERE users_email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($hashedPass);
+        $stmt->bind_result($userId, $hashedPass);
         $stmt->fetch();
         $stmt->close();
-
+    
         if (!$hashedPass) {
             echo "Invalid email or password.";
-        }else {
+        } else {
             if (password_verify($password, $hashedPass)) {
                 session_start();
-                $_SESSION["id"] = 1;
+                $_SESSION["id"] = $userId; // Set the user ID in the session
                 header("Location: index.php?page=rooms");
             } else {
                 echo "Invalid email or password.";
             }
         }
     }
+    
 
     function insertUser(){
         global $db;

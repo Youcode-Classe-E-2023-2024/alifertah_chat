@@ -15,3 +15,13 @@ CREATE TABLE Rooms (
     room_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(255) NOT NULL,
 );
+
+CREATE TABLE Messages (
+    message_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    room_id BIGINT,
+    sender_id BIGINT,
+    content TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
+    FOREIGN KEY (sender_id) REFERENCES Users(users_id),
+);
