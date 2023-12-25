@@ -2,7 +2,7 @@
     <h1 class="text-center  text-3xl"><?= $pageName?></h1>
     <div class="max-w-md mx-auto my-4 bg-white border rounded shadow-lg">
         <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
-            <!-- Messages will be displayed here -->
+            <?php allMessages(); ?>
         </div>
         <form id="chat-form" method="post" class="flex items-center p-4">
             <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
@@ -37,4 +37,6 @@ function fetchMsg(event) {
         body: formData
     })
 }
+
+
 </script>

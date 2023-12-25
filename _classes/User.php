@@ -17,25 +17,35 @@ class User
     static function getUser($email, $password)
     {
         global $db;
-        $stmt = $db->prepare("SELECT users_id, users_password FROM users WHERE users_email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->bind_result($userId, $hashedPass);
-        $stmt->fetch();
-        $stmt->close();
     
-        if (!$hashedPass) {
-            echo "Invalid email or password.";
-        } else {
-            if (password_verify($password, $hashedPass)) {
-                session_start();
-                $_SESSION["id"] = $userId; 
-                header("Location: index.php?page=rooms");
+        // Basic query with no protection (vulnerable to SQL injection)
+        $query = "SELECT users_id, users_password FROM users WHERE users_email = '$email'";
+        $result = $db->query($query);
+    
+        // Check if the query was successful
+        if ($result) {
+            // Fetch the user data
+            $user = $result->fetch_assoc();
+    
+            // Check if a user was found
+            if ($user) {
+                // Compare the provided password with the hashed password
+                if (password_verify($password, $user['users_password'])) {
+                    session_start();
+                    $_SESSION["id"] = $user['users_id'];
+                    header("Location: index.php?page=rooms");
+                } else {
+                    echo "Invalid email or password.";
+                }
             } else {
                 echo "Invalid email or password.";
             }
+        } else {
+            echo "Error executing the query.";
         }
     }
+    
+
     
 
     function insertUser(){
