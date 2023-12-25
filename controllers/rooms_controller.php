@@ -1,0 +1,2 @@
+<?php
+    $rw = Room::getAllRooms();

@@ -14,6 +14,4 @@ create table users
 CREATE TABLE Rooms (
     room_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(255) NOT NULL,
-    creator_id BIGINT,
-    FOREIGN KEY (creator_id) REFERENCES Users(users_id)
 );
