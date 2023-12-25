@@ -29,7 +29,7 @@ class User
         } else {
             if (password_verify($password, $hashedPass)) {
                 session_start();
-                $_SESSION["id"] = $userId; // Set the user ID in the session
+                $_SESSION["id"] = $userId; 
                 header("Location: index.php?page=rooms");
             } else {
                 echo "Invalid email or password.";
