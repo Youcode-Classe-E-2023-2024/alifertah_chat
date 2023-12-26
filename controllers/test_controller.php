@@ -3,7 +3,7 @@
 // $data = array("message" => "hero");
 // $cmd = "SELECT content FROM messages";
 // header('Content-Type: application/json');
-$result = $db->query("SELECT content FROM messages");
+$result = $db->query("SELECT * FROM messages");
 if ($result) {
     $message;
     while ($msg = $result->fetch_assoc()){

@@ -19,7 +19,7 @@ class User
         global $db;
     
         // Basic query with no protection (vulnerable to SQL injection)
-        $query = "SELECT users_id, users_password FROM users WHERE users_email = '$email'";
+        $query = "SELECT users_username,users_id, users_password FROM users WHERE users_email = '$email'";
         $result = $db->query($query);
     
         // Check if the query was successful
@@ -33,6 +33,7 @@ class User
                 if (password_verify($password, $user['users_password'])) {
                     session_start();
                     $_SESSION["id"] = $user['users_id'];
+                    $_SESSION["username"] = $user['users_username'];
                     header("Location: index.php?page=rooms");
                 } else {
                     echo "Invalid email or password.";

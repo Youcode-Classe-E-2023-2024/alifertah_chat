@@ -1,11 +1,11 @@
 <?php
     function insertMessage($message, $senderId, $roomId){
         // dd($_POST);
-
+        $usr = $_SESSION['username'];
         global $db;
-        $query = "INSERT INTO Messages (room_id, sender_id, content)
+        $query = "INSERT INTO Messages (room_id, sender_id, content, creator)
                  VALUES 
-                ('$roomId', '$senderId', '$message')";
+                ('$roomId', '$senderId', '$message', '$usr')";
         $db->query($query);
     }
 
