@@ -8,6 +8,9 @@ if(isset($_POST['message'])){
     insertMessage($message, $_SESSION['id'], $pageId);
 }
 
-// header('Content-Type: application/json');
-// $data = "hero";
-// echo json_encode($data);
+if(isset($_POST['generate'])){
+    $invitationLink = uniqid();
+    $sql = "INSERT INTO Invitation (room_id,invitation_link) VALUES ('$pageId', '$invitationLink')";
+    $db->query($sql);
+    echo "Invitation link created successfully: http://localhost/alifertah_chat/index.php?page=accept_inv&code=$invitationLink&room=$pageId";
+}

@@ -32,3 +32,11 @@ CREATE TABLE RoomUser (
     FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
     FOREIGN KEY (user_id) REFERENCES users(users_id)
 );
+
+CREATE TABLE Invitation (
+    invitation_id INT PRIMARY KEY,
+    room_id BIGINT,
+    invitation_link VARCHAR(255) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (room_id) REFERENCES Room(id),
+);

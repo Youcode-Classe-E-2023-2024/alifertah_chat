@@ -13,6 +13,9 @@
         <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
             
         </div>
+        <form action="" method="post">
+            <button type="submit" name="generate">GENERATE</button>
+        </form>
         <form id="chat-form" method="post" class="flex items-center p-4">
             <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
             <button id="submitMsg" onclick="fetchMsg(event)" type="submit" name="send" class="px-4 py-2 bg-blue-500 text-white rounded-r">Send</button>
