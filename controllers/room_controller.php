@@ -7,3 +7,7 @@ if(isset($_POST['message'])){
     $message = $_POST['message'];
     insertMessage($message, $_SESSION['id'], $pageId);
 }
+
+// header('Content-Type: application/json');
+// $data = "hero";
+// echo json_encode($data);
