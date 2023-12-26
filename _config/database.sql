@@ -25,3 +25,10 @@ CREATE TABLE Messages (
     FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
     FOREIGN KEY (sender_id) REFERENCES Users(users_id),
 );
+
+CREATE TABLE RoomUser (
+    room_id INT,
+    user_id INT,
+    FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
+    FOREIGN KEY (user_id) REFERENCES users(users_id)
+);
