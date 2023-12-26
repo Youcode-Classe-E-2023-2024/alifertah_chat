@@ -11,7 +11,7 @@ create table users
         unique (users_id)
 );
 
-CREATE TABLE Rooms (
+CREATE TABLE rooms (
     room_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     room_name VARCHAR(255) NOT NULL,
 );
@@ -26,9 +26,9 @@ CREATE TABLE Messages (
     FOREIGN KEY (sender_id) REFERENCES Users(users_id),
 );
 
-CREATE TABLE RoomUser (
-    room_id INT,
-    user_id INT,
+CREATE TABLE room_user (
+    room_id BIGINT,
+    user_id BIGINT,
     FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
     FOREIGN KEY (user_id) REFERENCES users(users_id)
 );
