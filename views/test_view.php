@@ -13,7 +13,7 @@
 
 // } else {
 //     echo json_encode(array('error' => 'Error fetching messages'));
-// }
+// // }
 // header('Content-Type: application/json');
 // $data = "hero";
 // echo json_encode($data);

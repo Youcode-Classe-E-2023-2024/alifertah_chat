@@ -15,7 +15,7 @@
         </div>
         <form id="chat-form" method="post" class="flex items-center p-4">
             <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
-            <button onclick="fetchMsg(event)" type="submit" name="send" class="px-4 py-2 bg-blue-500 text-white rounded-r">Send</button>
+            <button id="submitMsg" onclick="fetchMsg(event)" type="submit" name="send" class="px-4 py-2 bg-blue-500 text-white rounded-r">Send</button>
         </form>
     </div>
 </div>
@@ -35,11 +35,10 @@ function fetchMsg(event) {
     // console.log('ID:', id);
     // console.log('Page:', page);
     // console.log('Name:', name);
-
-    var url = `index.php?page=test`;
+    var url = `index.php?page=${page}&id=${id}&name=${name}`;
     
-    // var formData = new FormData();
-    // formData.append('message', message);
+    var formData = new FormData();
+    formData.append('message', message);
 
     fetch(url, {
         method: 'POST',
@@ -53,23 +52,39 @@ function fetchMsg(event) {
            console.log("it didn't work");
       }
     })
+    document.getElementById("message-input").value=""
 }
-var url1 = 'index.php?page=test';
 
-fetch(url1, {
-        method: 'POST',
-    })
-    // .then((response) => response.json())
-    .then((responseData) => {
-      if(responseData){
-           console.log(responseData.text().then((data)=> {
-            console.log(data)
-           }));
-      }else{
-           console.log("it didn't work");
-      }
-    })
-    .catch((error) => {
-    console.log('Error duringgg fetch:', error);
-});
+function asynChat(){
+    conv = document.getElementById("message-container");
+    console.log("test")
+    var url1 = 'index.php?page=test';
+    
+    fetch(url1, {
+            method: 'POST',
+        })
+        .then((responseData) => {
+          if(responseData){
+               (responseData.json().then((data)=> {
+                   conv.textContent = "";
+                data.map((value) => {
+                    const divElement = document.createElement('div');
+                    const spanElement = document.createElement('span');
+                    spanElement.className = 'px-4 my-2 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600';
+                    spanElement.textContent = value.content ; 
+                    // conv.innerHTML=value.content;
+                    divElement.appendChild(spanElement);
+                    conv.appendChild(divElement);
+                })
+               }));
+          }else{
+               console.log("it didn't work");
+          }
+        })
+        .catch((error) => {
+        console.log('Error duringgg fetch:', error);
+    });
+}
+
+setInterval(()=>{asynChat()}, 1000)
 </script>
