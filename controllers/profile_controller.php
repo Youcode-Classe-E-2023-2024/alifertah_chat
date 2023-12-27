@@ -7,8 +7,8 @@
         $receiver = $_SESSION['username'];
         $db->query("INSERT INTO friend_requests (sender_id, receiver_id)
         VALUES (
-            (SELECT users_id FROM users WHERE users_username = '$username'),
-            (SELECT users_id FROM users WHERE users_username = '$receiver')
+            (SELECT users_id FROM users WHERE users_username = '$receiver'),
+            (SELECT users_id FROM users WHERE users_username = '$username')
         );
         ");
     

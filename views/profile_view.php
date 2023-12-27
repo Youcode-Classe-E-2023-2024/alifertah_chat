@@ -26,26 +26,30 @@
   </div>
   <div class="flex">
   <?php
-      if($username == $_SESSION['username'] ){
+      if($username == $_SESSION['username']){
         while($req = $res->fetch_assoc()){
-          $sender = $db->query("SELECT users_username FROM users WHERE users_id = '$req[sender_id]'");
-          $senderUsername = $sender->fetch_assoc();
-          echo("
-          <div class='flex justify-center items-center'>
-            <div class=''>
-              <div>
-                <span class='font-semibold text-gray-800'>$senderUsername[users_username]</span>
-                <span class='text-gray-400'>wants to be your friend</span>
-              </div>
-              <div class='font-semibold'>
-              <form method='post' action=''>
-                <a href='#' class='text-blue-600 mr-2'>Accept</a>
-                <a href='#' class='text-gray-400'>Decline</a>
-              </form>
-              </div>
-              </div>
-              </div>
-              ");
+          $receiver = $db->query("SELECT users_username FROM users WHERE users_id = '$req[receiver_id]'");
+          $receiverUsername = $receiver->fetch_assoc();
+          if($receiverUsername['users_username'] == $_SESSION['username']){
+            $sender = $db->query("SELECT users_username FROM users WHERE users_id = '$req[sender_id]'");
+            $senderUsername = $sender->fetch_assoc();
+            echo("
+            <div class='flex justify-center items-center'>
+              <div class=''>
+                <div>
+                  <span class='font-semibold text-gray-800'>$senderUsername[users_username]</span>
+                  <span class='text-gray-400'>wants to be your friend</span>
+                </div>
+                <div class='font-semibold'>
+                <form method='post' action=''>
+                  <a href='#' class='text-blue-600 mr-2'>Accept</a>
+                  <a href='#' class='text-gray-400'>Decline</a>
+                </form>
+                </div>
+                </div>
+                </div>
+                ");
+          }
         }
           }
           ?> 
