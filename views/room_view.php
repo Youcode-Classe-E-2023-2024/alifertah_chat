@@ -87,7 +87,7 @@ function asynChat(){
                         const userLink = document.createElement("a");
                         userLink.textContent = value.users_username;
                         userLink.className =  "px-4 text-2xl";
-                        userLink.href =  "#";
+                        userLink.href =  `index.php?page=profile&username=${value.users_username}`;
                         usersContainer.appendChild(userLink);
                     }
                 })
