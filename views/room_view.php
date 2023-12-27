@@ -6,8 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
-<body>
-<div>
+<body class="bg-gray-100">
+<div class="">
     <h1 class="text-center  text-3xl"><?= $pageName?></h1>
     <div class="w-[80-%] mx-10 my-20 bg-white border rounded shadow-lg">
         <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
@@ -21,10 +21,13 @@
             </form>
         </div>
     </div>
-    <h1 class="text-center text-white text-3xl">MEMBERS</h1>
-    <div id="users" class="flex py-4 bg-white">
+    <div>
+        <h1 class="text-center text-white text-3xl">MEMBERS</h1>
+        <div id="users" class="flex py-4 bg-white">
+        </div>
     </div>
     <a class="text-3xl text-red-600" href="index.php?page=room_kicks&room=<?=$pageId?>" >KICK</a>
+</div>
 </body>
 </html>
 
