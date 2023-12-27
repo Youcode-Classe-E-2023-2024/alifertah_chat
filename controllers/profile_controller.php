@@ -11,4 +11,10 @@
             (SELECT users_id FROM users WHERE users_username = '$receiver')
         );
         ");
-    }
+    
+}
+if($username == $_SESSION['username']){
+    $res = $db->query("SELECT * FROM friend_requests WHERE receiver_id = (
+        SELECT users_id FROM users WHERE users_username = '$_SESSION[username]'
+    )");
+}
