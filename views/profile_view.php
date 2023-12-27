@@ -1,6 +1,7 @@
 <!-- component -->
 <body class="bg-gray-100">
-  <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-md p-5">
+<div class="flex justify-center items-center">
+  <div class="max-w-lg mx-auto my-10 bg-white rounded-lg shadow-md p-5 ">
     <img class="w-32 h-32 rounded-full mx-auto" src="https://picsum.photos/200" alt="Profile picture">
     <h2 class="text-center text-2xl font-semibold mt-3"><?= $username ?></h2>
     <a class="text-center text-gray-600 mt-1"><?=$userEmail['users_email']?></p>
@@ -15,6 +16,7 @@
         <button class='text-blue-500 hover:text-blue-700 mx-3' type='submit' name='add'>add</button>
       </form>
       ");
+      
       ?>
     </div>
     <div class="mt-5">
@@ -22,4 +24,28 @@
       <p class="text-gray-600 mt-2">John is a software engineer with over 10 years of experience in developing web and mobile applications. He is skilled in JavaScript, React, and Node.js.</p>
     </div>
   </div>
+  <div class="flex">
+  
+  <?php
+      if($username == $_SESSION['username'] ){
+        echo("
+        <div class='flex justify-center items-center'>
+          <div class=''>
+            <div>
+              <span class='font-semibold text-gray-800'>Ezio Dani</span>
+              <span class='text-gray-400'>wants to be your friend</span>
+            </div>
+            <div class='font-semibold'>
+            <form method='post' action=''>
+              <a href='#' class='text-blue-600 mr-2'>Accept</a>
+              <a href='#' class='text-gray-400'>Decline</a>
+            </form>
+            </div>
+            </div>
+            </div>
+            ");
+          }
+          ?>
+    </div>
+      </div>  
 </body>
