@@ -71,15 +71,25 @@ function asynChat(){
         .then((responseData) => {
           if(responseData){
                (responseData.json().then((data)=> {
+                console.log(data)
                 conv.textContent = "";
+                const usersContainer = document.getElementById("users");
+                usersContainer.textContent = "";
                 data.map((value) => {
-                    const divElement = document.createElement('div');
-                    const spanElement = document.createElement('span');
-                    spanElement.className = 'px-4 my-2 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600';
-                    spanElement.textContent = value.creator + ":" + value.content ; 
-                    // conv.innerHTML=value.content;
-                    divElement.appendChild(spanElement);
-                    conv.appendChild(divElement);
+                    if(value.content && value.creator){
+                        const divElement = document.createElement('div');
+                        const spanElement = document.createElement('span');
+                        spanElement.className = 'px-4 my-2 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600';
+                        spanElement.textContent = value.creator + ":" + value.content ; 
+                        // conv.innerHTML=value.content;
+                        divElement.appendChild(spanElement);
+                        conv.appendChild(divElement);
+                    } else {
+                        const userLink = document.createElement("a");
+                        userLink.textContent = value.users_username;
+                        userLink.className =  "px-4 text-2xl";
+                        usersContainer.appendChild(userLink);
+                    }
                 })
                }));
           }else{
