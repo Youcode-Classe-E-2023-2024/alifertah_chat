@@ -18,3 +18,9 @@ if($username == $_SESSION['username']){
         SELECT users_id FROM users WHERE users_username = '$_SESSION[username]'
     )");
 }
+if(isset($_POST['accept'])){
+    $db->query("UPDATE `friend_requests` SET `status` = 'accepted' WHERE `friend_requests`.`request_id` = '$_SESSION[friendRequestId]';");
+}
+if(isset($_POST['decline'])){
+    $db->query("UPDATE `friend_requests` SET `status` = 'rejected' WHERE `friend_requests`.`request_id` = '$_SESSION[friendRequestId]';");
+}

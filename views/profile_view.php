@@ -30,7 +30,8 @@
         while($req = $res->fetch_assoc()){
           $receiver = $db->query("SELECT users_username FROM users WHERE users_id = '$req[receiver_id]'");
           $receiverUsername = $receiver->fetch_assoc();
-          if($receiverUsername['users_username'] == $_SESSION['username']){
+          if($receiverUsername['users_username'] == $_SESSION['username'] && $req['status'] == 'pending'){
+            $_SESSION['friendRequestId'] = $req['request_id'];
             $sender = $db->query("SELECT users_username FROM users WHERE users_id = '$req[sender_id]'");
             $senderUsername = $sender->fetch_assoc();
             echo("
@@ -42,8 +43,10 @@
                 </div>
                 <div class='font-semibold'>
                 <form method='post' action=''>
-                  <a href='#' class='text-blue-600 mr-2'>Accept</a>
-                  <a href='#' class='text-gray-400'>Decline</a>
+                <form for='post' method='post'>
+                  <button type='submit' name='accept' class='text-blue-600 mr-2'>Accept</button>
+                  <button type='submit' name='decline' class='text-gray-400 mr-2'>Decline</button>
+                </form>
                 </form>
                 </div>
                 </div>
