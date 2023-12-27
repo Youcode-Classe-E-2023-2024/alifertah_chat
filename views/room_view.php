@@ -22,8 +22,7 @@
         </div>
     </div>
     <div id="users" class="flex text-white">
-        <a href="#" class='mx-4 '>Ali Fertah</a>
-        <a href="#" class='mx-4 '>Ali Fertah</a>
+        
     </div>
 </body>
 </html>
@@ -88,6 +87,7 @@ function asynChat(){
                         const userLink = document.createElement("a");
                         userLink.textContent = value.users_username;
                         userLink.className =  "px-4 text-2xl";
+                        userLink.href =  "#";
                         usersContainer.appendChild(userLink);
                     }
                 })
