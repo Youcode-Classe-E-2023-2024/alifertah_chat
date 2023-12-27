@@ -35,9 +35,7 @@ function fetchMsg(event) {
     var page = urlParams.get('page');
     var name = urlParams.get('name');
 
-    // console.log('ID:', id);
-    // console.log('Page:', page);
-    // console.log('Name:', name);
+
     var url = `index.php?page=${page}&id=${id}&name=${name}`;
     
     var formData = new FormData();
@@ -60,8 +58,9 @@ function fetchMsg(event) {
 
 function asynChat(){
     conv = document.getElementById("message-container");
-    console.log("test")
-    var url1 = 'index.php?page=test';
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('id');
+    var url1 = `index.php?page=test&room=${id}`;
     
     fetch(url1, {
             method: 'POST',
@@ -69,7 +68,7 @@ function asynChat(){
         .then((responseData) => {
           if(responseData){
                (responseData.json().then((data)=> {
-                   conv.textContent = "";
+                conv.textContent = "";
                 data.map((value) => {
                     const divElement = document.createElement('div');
                     const spanElement = document.createElement('span');
