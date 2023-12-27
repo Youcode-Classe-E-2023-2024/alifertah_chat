@@ -12,7 +12,7 @@
       if($username != $_SESSION['username'])
       echo("
       <form action='' method='post'>
-        <button type='submit' name='add'>add</button>
+        <button class='text-blue-500 hover:text-blue-700 mx-3' type='submit' name='add'>add</button>
       </form>
       ");
       ?>
