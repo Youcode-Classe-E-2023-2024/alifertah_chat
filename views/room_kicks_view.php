@@ -4,7 +4,7 @@
         <?php
             while($usr = $allUsers->fetch_assoc()){
                 echo "<option>"  .
-                $usr['users_id'] . "</option>";
+                $usr['users_username'] . "</option>";
             }
         ?>
     </select>    
