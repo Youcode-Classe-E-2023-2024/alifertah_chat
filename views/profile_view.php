@@ -8,6 +8,14 @@
       <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">Twitter</a>
       <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">LinkedIn</a>
       <a href="#" class="text-blue-500 hover:text-blue-700 mx-3">GitHub</a>
+      <?php
+      if($username != $_SESSION['username'])
+      echo("
+      <form action='' method='post'>
+        <button type='submit' name='add'>add</button>
+      </form>
+      ");
+      ?>
     </div>
     <div class="mt-5">
       <h3 class="text-xl font-semibold">Bio</h3>

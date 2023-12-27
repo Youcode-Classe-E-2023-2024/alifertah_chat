@@ -38,3 +38,13 @@ CREATE TABLE Invitation (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (room_id) REFERENCES Room(id),
 );
+
+CREATE TABLE friend_requests (
+    request_id bigint auto_increment primary key,
+    sender_id bigint not null,
+    receiver_id bigint not null,
+    status enum('pending', 'accepted', 'rejected') not null default 'pending',
+    created_at timestamp default current_timestamp,
+    foreign key (sender_id) references users(users_id),
+    foreign key (receiver_id) references users(users_id)
+);
