@@ -13,7 +13,7 @@
         <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
             </div>
             <form action="" method="post">
-                <button type="submit" name="generate">GENERATE</button>
+                <button type="submit" name="generate">INVITE</button>
             </form>
             <form id="chat-form" method="post" class="flex items-center p-4">
                 <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
@@ -21,7 +21,8 @@
             </form>
         </div>
     </div>
-    <div id="users" class="flex text-white">
+    <h1 class="text-center text-white text-3xl">MEMBERS</h1>
+    <div id="users" class="flex py-4 bg-white">
         
     </div>
 </body>
@@ -86,7 +87,7 @@ function asynChat(){
                     } else {
                         const userLink = document.createElement("a");
                         userLink.textContent = value.users_username;
-                        userLink.className =  "px-4 text-2xl";
+                        userLink.className =  "px-4 text-2xl underline hover:text-blue-700";
                         userLink.href =  `index.php?page=profile&username=${value.users_username}`;
                         usersContainer.appendChild(userLink);
                     }
