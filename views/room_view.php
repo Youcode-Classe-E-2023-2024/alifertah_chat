@@ -23,8 +23,8 @@
     </div>
     <h1 class="text-center text-white text-3xl">MEMBERS</h1>
     <div id="users" class="flex py-4 bg-white">
-        
     </div>
+    <a class="text-3xl text-red-600" href="index.php?page=room_kicks&room=<?=$pageId?>" >KICK</a>
 </body>
 </html>
 

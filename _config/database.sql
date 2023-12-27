@@ -29,8 +29,6 @@ CREATE TABLE Messages (
 CREATE TABLE room_user (
     room_id BIGINT,
     user_id BIGINT,
-    FOREIGN KEY (room_id) REFERENCES Rooms(room_id),
-    FOREIGN KEY (user_id) REFERENCES users(users_id)
 );
 
 CREATE TABLE Invitation (
