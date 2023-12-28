@@ -103,7 +103,6 @@
         </div>
         <div class="chat-container">
             <div id="message-container">
-                <!-- Message container content goes here -->
             </div>
             <form action="" method="post" id="chat-form">
                 <input type="text" id="message-input" name="message" placeholder="Type your message...">
@@ -112,11 +111,15 @@
         </div>
         <div>
             <h1 class="room-header">MEMBERS</h1>
+            <div class="flex items-center text-center justify-center">
+                <form action="" class="text-2xl text-center text-blue-600 mr-4 " method="post">
+                        <button class="hover:underline" type="submit" name="generate">INVITE</button>
+                    </form>
+                    <a class="text-2xl text-center text-red-600 hover:underline" href="index.php?page=room_kicks&room=<?= $pageId ?>">KICK</a>
+            </div>    
             <div id="users" class="member-list">
-                <!-- Member list content goes here -->
             </div>
         </div>
-        <a class="kick-link" href="index.php?page=room_kicks&room=<?= $pageId ?>">KICK</a>
     </div>
 </body>
 </html>
@@ -130,7 +133,6 @@ function fetchMsg(event) {
     var id = urlParams.get('id');
     var page = urlParams.get('page');
     var name = urlParams.get('name');
-
 
     var url = `index.php?page=${page}&id=${id}&name=${name}`;
     
@@ -194,5 +196,5 @@ function asynChat(){
     });
 }
 
-setInterval(()=>{asynChat()}, 1000)
+setInterval(()=>{asynChat()}, 100)
 </script>
