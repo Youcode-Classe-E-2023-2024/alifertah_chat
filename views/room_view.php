@@ -196,5 +196,5 @@ function asynChat(){
     });
 }
 
-setInterval(()=>{asynChat()}, 100)
+setInterval(()=>{asynChat()}, 1000)
 </script>
