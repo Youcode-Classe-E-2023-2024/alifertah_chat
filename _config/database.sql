@@ -48,3 +48,9 @@ CREATE TABLE friend_requests (
     foreign key (sender_id) references users(users_id),
     foreign key (receiver_id) references users(users_id)
 );
+
+CREATE TABLE blocks (
+    block_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    blocker_id BIGINT NOT NULL,
+    blocked_id BIGINT NOT NULL,
+);
