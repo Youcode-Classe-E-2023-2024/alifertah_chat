@@ -26,9 +26,9 @@
 			<table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
 				<thead>
 					<tr>
-						<th data-priority="1">ID</th>
-						<th data-priority="2">NAME</th>
-						<th data-priority="3">ACTION</th>
+						<th class="bg-blue-500" data-priority="1">ID</th>
+						<th class="bg-blue-500" data-priority="2"> NAME</th>
+						<th class="bg-blue-500" data-priority="3">ACTION</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,7 +58,7 @@
     	$(document).ready(function() {
 
 var table = $('#example').DataTable({
-        responsive: true
+        responsive: true,
     })
     .columns.adjust()
     .responsive.recalc();

@@ -6,28 +6,118 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7fafc;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .room-header {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .chat-container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        #message-container {
+            height: 200px;
+            overflow-y: scroll;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        #chat-form {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+        }
+
+        #submitMsg {
+            padding: 10px 20px;
+            background-color: #3490dc;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #users {
+            display: flex;
+            padding: 10px;
+            /* background-color: #ffffff; */
+        }
+
+        .member-list {
+            flex: 1;
+            padding: 10px;
+            background-color: #3490dc;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .kick-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #e53e3e;
+            text-decoration: none;
+        }
+
+        .kick-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 <body class="bg-gray-100">
-<div class="">
-    <h1 class="text-center  text-3xl"><?= $pageName?></h1>
-    <div class="w-[80-%] mx-10 my-20 bg-white border rounded shadow-lg">
-        <div id="message-container" class="h-48 overflow-y-scroll p-4 border-b">
+<div class="container">
+        <div class="room-header">
+            <?= $pageName ?>
+        </div>
+        <div class="chat-container">
+            <div id="message-container">
+                <!-- Message container content goes here -->
             </div>
-            <form action="" method="post">
-                <button type="submit" name="generate">INVITE</button>
-            </form>
-            <form id="chat-form" method="post" class="flex items-center p-4">
-                <input type="text" id="message-input" name="message" placeholder="Type your message..." class="flex-1 p-2 border rounded-l">
-                <button id="submitMsg" onclick="fetchMsg(event)" type="submit" name="send" class="px-4 py-2 bg-blue-500 text-white rounded-r">Send</button>
+            <form action="" method="post" id="chat-form">
+                <input type="text" id="message-input" name="message" placeholder="Type your message...">
+                <button id="submitMsg" onclick="fetchMsg(event)" type="submit" name="send">Send</button>
             </form>
         </div>
-    </div>
-    <div>
-        <h1 class="text-center text-white text-3xl">MEMBERS</h1>
-        <div id="users" class="flex py-4 bg-white">
+        <div>
+            <h1 class="room-header">MEMBERS</h1>
+            <div id="users" class="member-list">
+                <!-- Member list content goes here -->
+            </div>
         </div>
+        <a class="kick-link" href="index.php?page=room_kicks&room=<?= $pageId ?>">KICK</a>
     </div>
-    <a class="text-3xl text-red-600" href="index.php?page=room_kicks&room=<?=$pageId?>" >KICK</a>
-</div>
 </body>
 </html>
 
@@ -83,8 +173,7 @@ function asynChat(){
                         const divElement = document.createElement('div');
                         const spanElement = document.createElement('span');
                         spanElement.className = 'px-4 my-2 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600';
-                        spanElement.textContent = value.creator + ":" + value.content ; 
-                        // conv.innerHTML=value.content;
+                        spanElement.textContent = value.creator + " : " + value.content ; 
                         divElement.appendChild(spanElement);
                         conv.appendChild(divElement);
                     } else {
