@@ -11,11 +11,17 @@ if ($result) {
     $message;
     while ($msg = $result->fetch_assoc()){
         if($msg['room_id'] == $roomId){
-        $checkBlock = $db->query("SELECT block_id FROM blocks WHERE 
+        $checkBlocked = $db->query("SELECT block_id FROM blocks WHERE 
         blocker_id = (SELECT users_id FROM users WHERE users_username = '$userId') and
         blocked_id = (SELECT users_id FROM users WHERE users_username = '$msg[creator]')
         ");
-        $block = $checkBlock->num_rows;
+
+        $checkBlocker = $db->query("SELECT block_id FROM blocks WHERE 
+        blocker_id = (SELECT users_id FROM users WHERE users_username = '$msg[creator]') and
+        blocked_id = (SELECT users_id FROM users WHERE users_username = '$userId') 
+        ");
+
+        $block = $checkBlocked->num_rows + $checkBlocker->num_rows;
             if(!$block){
                 $message[] = $msg;
             }
